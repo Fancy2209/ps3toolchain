@@ -6,6 +6,7 @@ on:
 
 jobs:
   build-windows:
+    runs-on: windows-latest
       - uses: actions/checkout@v4
       - uses: msys2/setup-msys2@v2
         with:
@@ -39,5 +40,5 @@ jobs:
             mingw-w64-x86_64-pkg-config
             mingw-w64-x86_64-openssl
 
-    - shell: msys2 {0}
-      run: ./toolchain.sh
+      - shell: msys2 {0}
+        run: ./toolchain.sh
