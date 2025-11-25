@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            bison
+            flex  
+            mingw-w64-x86_64-autotools
+            mingw-w64-x86_64-binutils
+            mingw-w64-x86_64-crt
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-gcc-ada
+            mingw-w64-x86_64-gmp
+            mingw-w64-x86_64-gperf
+            mingw-w64-x86_64-headers
+            mingw-w64-x86_64-isl
+            mingw-w64-x86_64-libiconv
+            mingw-w64-x86_64-mpc
+            mingw-w64-x86_64-mpfr
+            mingw-w64-x86_64-python
+            mingw-w64-x86_64-python-setuptools
+            mingw-w64-x86_64-windows-default-manifest
+            mingw-w64-x86_64-winpthreads
+            mingw-w64-x86_64-zlib
+            mingw-w64-x86_64-zstd
+            mingw-w64-x86_64-cc
+            mingw-w64-x86_64-gettext-tools
+            mingw-w64-x86_64-python3.13	
+            mingw-w64-x86_64-libelf
+            mingw-w64-x86_64-bzip2
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-openssl
+
+    - shell: msys2 {0}
+      run: ./toolchain.sh
